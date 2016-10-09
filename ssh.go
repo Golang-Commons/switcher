@@ -17,6 +17,5 @@ func (s SSH) Identify(header []byte) bool {
 	if bytes.Compare(header, []byte("SSH")) == 0 {
 		return true
 	}
-
 	return false
 }

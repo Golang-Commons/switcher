@@ -9,6 +9,7 @@ import (
 var (
 	listenAddress  = flag.String("listen", ":80", "Server Listen Address")
 	sshAddress     = flag.String("ssh", "127.0.0.1:22", "SSH Server Address")
+	sslAddress     = flag.String("ssl", ":443", "SSL Server address(usually https)")
 	defaultAddress = flag.String("default", "127.0.0.1:8080", "Default Server Address")
 )
 
@@ -36,6 +37,7 @@ func main() {
 	mux := NewMux()
 
 	mux.Handle(SSH(*sshAddress))
+	mux.Handle(SSL(*sslAddress))
 	mux.Handle(TCP(*defaultAddress))
 
 	log.Printf("[INFO] listen: %s\n", *listenAddress)
